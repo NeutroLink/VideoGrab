@@ -653,7 +653,7 @@
 <script>
     class VideoDownloader {
         constructor() {
-            this.ws = new WebSocket(`ws://${window.location.host}`);
+            this.ws = new WebSocket(`${window.location.protocol === 'https:' ? 'wss' : 'ws'}://${window.location.host}`);
             this.ws.onmessage = this.handleWebSocketMessage.bind(this);
             this.ws.onopen = () => console.log('WebSocket connected');
             this.ws.onclose = () => console.log('WebSocket disconnected');
