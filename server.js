@@ -101,9 +101,9 @@ app.post('/api/video-info', async (req, res) => {
         if (!url) {
             return res.status(400).json({ error: 'URL is required' });
         }
-        const args = ['--dump-json', '--no-download', url];
+        const args = ['--print-json', '--no-download', url];
         const output = await runYtDlp(args, () => {}); // No progress needed here
-        const videoInfo = JSON.parse(output);
+        const videoInfo = JSON.parse(output.trim());
         res.json({
             title: videoInfo.title,
             duration: videoInfo.duration_string || 'Unknown',
